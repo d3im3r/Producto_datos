@@ -7,8 +7,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import geopandas
 import folium
-import geopandas
-import folium
 import plotly.io as pli
 from sklearn.preprocessing import MinMaxScaler
 
