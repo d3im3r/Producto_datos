@@ -14,6 +14,7 @@ from sklearn.preprocessing import MinMaxScaler
 import warnings
 
 warnings.filterwarnings("ignore")
+pd.set_option('display.max_columns', 10)
 
 
 #####################################################################################################################################
@@ -21,7 +22,8 @@ warnings.filterwarnings("ignore")
 
 def main_work():
     data_raw = load_data()
-    data_4_use = select_data(data_raw)
+    data_selected = select_data(data_raw)
+    data_4_use = define_status(data_selected,flag=21)
     return data_4_use
 
 
@@ -58,6 +60,22 @@ def data_clean_columns(booking,head1=None,head2=None,head3=None,head4=None,head5
     booking = booking.dropna()
     print("#"*50,"\nDatos nulos presentes después de la limpieza",booking.isnull().sum())
     return booking
+
+
+def define_status(booking,flag=7):
+    data = booking.apply(lambda row: categorise_status(row,flag), axis=1)
+    booking.insert(loc=3,
+                   column='status',
+                   value = data)
+    return booking
+
+def categorise_status(row,flag=7):
+    if row['lead_time'] == 0:
+        return 'closed'
+    elif row['lead_time'] > 0 and row['lead_time'] <= flag:
+        return 'in_progress'
+    else:
+        return 'open'
 
 
 datos=main_work()
