@@ -57,6 +57,7 @@ def define_status(booking,flag=7):
     booking.insert(loc=3,
                    column='status',
                    value = data)
+    
     return booking
 
 def categorize_status(row,flag=7):
@@ -67,8 +68,10 @@ def categorize_status(row,flag=7):
     else:
         return 'open'
 
+def data_scale(booking):
+
 
 datos=main_work()
-datos=data_clean_columns(datos,"agent","company")
+datos=data_clean_columns(datos,"agent","company","country")
 
 print(datos.head())
