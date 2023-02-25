@@ -53,13 +53,13 @@ def data_clean_columns(booking,head1=None,head2=None,head3=None,head4=None,head5
 
 
 def define_status(booking,flag=7):
-    data = booking.apply(lambda row: categorise_status(row,flag), axis=1)
+    data = booking.apply(lambda row: categorize_status(row,flag), axis=1)
     booking.insert(loc=3,
                    column='status',
                    value = data)
     return booking
 
-def categorise_status(row,flag=7):
+def categorize_status(row,flag=7):
     if row['lead_time'] == 0:
         return 'closed'
     elif row['lead_time'] > 0 and row['lead_time'] <= flag:
