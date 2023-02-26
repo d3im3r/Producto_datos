@@ -4,13 +4,13 @@ from datetime import datetime
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
-# pd.set_option('display.max_columns', 10)
+# pd.set_option('display.max_columns',51)
 
 
 #####################################################################################################################################
 path_ = os.path.dirname(__file__)
 categories_unusefull = ["agent","company",'days_in_waiting_list', 'arrival_date_year', "arrival_date_month",'assigned_room_type', 'booking_changes',
-                        'reservation_status', 'country', 'days_in_waiting_list']
+                        'country', 'days_in_waiting_list']
 
 def main_work():
     data_raw = load_data()
@@ -23,6 +23,7 @@ def main_work():
     data_datetime_corrected = datetime_adjust(data_clean)
     print(" Definiendo variable status... ".center(80,"*"))
     data_status = define_status(data_datetime_corrected)
+    print(data_status.loc[:, ['reservation_status', "is_canceled"]])
     data_feeder = data_filter(data_status)
     data_OHE = one_hot_encoding(data_feeder)
     print(" One-Hot-Encoding... ".center(80,"*"), data_OHE.shape, sep="\n")
@@ -59,16 +60,31 @@ def data_clean_columns(booking,heads_to_remove=[]):
     return booking
 
 
-
 def define_status(booking,flag=21):
-    data = booking.apply(lambda row: categorize_status(row,flag), axis=1)
+    booking["reservation_status"] = booking.apply(lambda row: categorize_status(row,flag), axis=1)
+    return booking
+
+def categorize_status(booking,flag=21):
+    if booking['is_canceled'] == 1:
+        result = "canceled"
+    else:
+        if booking['lead_time'] == 0:
+            result = "closed"
+        elif booking['lead_time'] > 0 and booking['lead_time'] <= flag:
+            result = "in_progress"
+        else:
+            result = "open"
+    return result
+
+def define_status_2(booking,flag=21):
+    data = booking.apply(lambda row: categorize_status_2(row,flag), axis=1)
     booking.insert(loc=3,
                    column='status',
                    value = data)
     
     return booking
 
-def categorize_status(row,flag=21):
+def categorize_status_2(row,flag=21):
     if row['lead_time'] == 0:
         return 'closed'
     elif row['lead_time'] > 0 and row['lead_time'] <= flag:
