@@ -1,7 +1,13 @@
-test:
-ifdef imprima
+simulation:
+ifdef n_days
+	python3 main.py $(n_days)
+else:
 	python3 main.py
+endif
 
-test2:
-ifdef imprima2
-	python3 name.py
+processing:
+ifdef n_days
+	python3 process.py $(n_days)
+else:
+	python3 process.py
+endif
