@@ -11,3 +11,8 @@ ifdef n_days
 else:
 	python3 process.py
 endif
+
+# restart:
+# ifdef
+
+# python3 restart.py

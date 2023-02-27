@@ -4,6 +4,7 @@ from datetime import datetime
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
+import shutil
 # pd.set_option('display.max_columns',51)
 
 
@@ -16,7 +17,8 @@ flag = 21 # Cantidad de dias con los que se van a analizar
 def reset_all():
     module_path = os.path.dirname(__file__)
     folder_path = os.path.join(module_path, "../Data/Preprocessing")
-    os.rmdir(folder_path)
+    #os.rmdir(folder_path)
+    shutil.rmtree(folder_path)
     print('''
     Data deleted succesfully! :)
     ''')
@@ -25,7 +27,7 @@ def reset_all():
 funcion para cargar datos y alamacenar sin OHE
 '''
 
-def main_work(flag=21):
+def main_work(flag=21,saved=True):
     data_raw = load_data()
     print(" Dimensionalidad datos originales... ".center(80,"*"))
     print(data_raw.shape)
@@ -39,24 +41,15 @@ def main_work(flag=21):
     print(data_status.loc[:, ['reservation_status', "is_canceled"]])
     data_simulation = data_filter(data_status,flag)
     print(data_simulation)
-    save_data_file(data_simulation,name='preprocessing_data',time_on=False)
+    if saved:
+        save_data_file(data_simulation,name='preprocessing_data',time_on=False)
     return data_simulation
 
 '''
 funcion de procesamiento con OHE
 ''' 
 def process_work(flag=21):
-    data_raw = load_data()
-    print(" Dimensionalidad datos originales... ".center(80,"*"))
-    print(data_raw.shape)
-    data_selected = select_data(data_raw)
-    print(" Muestreando data... ".center(80,"*"), data_selected.shape, data_selected.head(), sep="\n")
-    data_clean = data_clean_columns(data_selected,categories_unusefull)
-    print(" Limpiando data... ".center(80,"*"),data_clean.head(), sep="\n")
-    data_datetime_corrected = datetime_adjust(data_clean)
-    print(" Definiendo variable status... ".center(80,"*"))
-    data_status = define_status(data_datetime_corrected,flag)
-    print(data_status.loc[:, ['reservation_status', "is_canceled"]])
+    data_status=main_work(flag,saved=False)
     data_simulation = data_filter(data_status,flag)
     print(data_simulation)
     data_normalized=data_process(data_simulation)
@@ -109,7 +102,7 @@ def load_data():
 '''
 Muestreo aleatorio simple
 '''
-def select_data(dataframe,instances=10000,seed=42):
+def select_data(dataframe,instances=80000,seed=42):
     dataframe = dataframe.sample(n=instances, random_state=seed)
     return dataframe
 
