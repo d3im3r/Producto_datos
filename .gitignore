@@ -2,4 +2,6 @@
 /Entrega_1/Flujo/__pycache__
 /Entrega_1/Flujo/.idea
 /venv
-/Data/Preprocessing
+/Data/Preprocessing/
+/venv_linux
+Flujo/__pycache__/simulator.cpython-38.pyc
