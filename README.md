@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://medellin.unal.edu.co/templates/unal/images/escudoUnal_black.png">
+  <img src="https://minas.medellin.unal.edu.co/images/noticias/logoUN.gif">
 </p>
 
 # **Producto de Datos**
