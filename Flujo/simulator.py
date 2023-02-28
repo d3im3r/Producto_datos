@@ -15,13 +15,17 @@ data_path = "hotel_bookings.csv"
 flag = 21 # Cantidad de dias con los que se van a analizar
 
 def reset_all():
-    module_path = os.path.dirname(__file__)
-    folder_path = os.path.join(module_path, "../Data/Preprocessing")
-    #os.rmdir(folder_path)
-    shutil.rmtree(folder_path)
-    print('''
-    Data deleted succesfully! :)
-    ''')
+    try:
+        module_path = os.path.dirname(__file__)
+        folder_path = os.path.join(module_path, "../Data/Preprocessing")
+        #os.rmdir(folder_path)
+        shutil.rmtree(folder_path)
+        print('''
+        Data deleted succesfully! :)
+        ''')
+    except:
+        print('The directory is not find, creating the directory...')
+    os.mkdir(folder_path)
 
 '''
 funcion para cargar datos y alamacenar sin OHE
