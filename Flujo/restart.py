@@ -1,5 +1,5 @@
 import sys
-import test
+import simulator
 
 if __name__ == '__main__':
-    test.restart()
+    simulator.restart()

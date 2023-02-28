@@ -4,6 +4,7 @@ from datetime import datetime
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
+import shutil
 # pd.set_option('display.max_columns',51)
 
 
@@ -13,37 +14,72 @@ categories_unusefull = ["agent","company",'days_in_waiting_list', 'arrival_date_
 data_path = "hotel_bookings.csv"
 flag = 21 # Cantidad de dias con los que se van a analizar
 
+def reset_all():
+    module_path = os.path.dirname(__file__)
+    folder_path = os.path.join(module_path, "../Data/Preprocessing")
+    #os.rmdir(folder_path)
+    shutil.rmtree(folder_path)
+    print('''
+    Data deleted succesfully! :)
+    ''')
 
-def main_work():
+'''
+funcion para cargar datos y alamacenar sin OHE
+'''
+
+def main_work(flag=21,saved=True):
     data_raw = load_data()
     print(" Dimensionalidad datos originales... ".center(80,"*"))
     print(data_raw.shape)
-    #data_selected = select_data(data_raw)
-    #print(" Muestreando data... ".center(80,"*"), data_selected.shape, data_selected.head(), sep="\n")
-    data_clean = data_clean_columns(data_raw,categories_unusefull)
+    data_selected = select_data(data_raw)
+    print(" Muestreando data... ".center(80,"*"), data_selected.shape, data_selected.head(), sep="\n")
+    data_clean = data_clean_columns(data_selected,categories_unusefull)
     print(" Limpiando data... ".center(80,"*"),data_clean.head(), sep="\n")
     data_datetime_corrected = datetime_adjust(data_clean)
     print(" Definiendo variable status... ".center(80,"*"))
     data_status = define_status(data_datetime_corrected,flag)
     print(data_status.loc[:, ['reservation_status', "is_canceled"]])
-    data_feeder = data_filter(data_status,flag)
-    data_OHE = one_hot_encoding(data_feeder)
+    data_simulation = data_filter(data_status,flag)
+    print(data_simulation)
+    if saved:
+        save_data_file(data_simulation,name='preprocessing_data',time_on=False)
+    return data_simulation
+
+'''
+funcion de procesamiento con OHE
+''' 
+def process_work(flag=21):
+    data_status=main_work(flag,saved=False)
+    data_simulation = data_filter(data_status,flag)
+    print(data_simulation)
+    data_normalized=data_process(data_simulation)
+    save_data_file(data_normalized,name='processed_data',time_on=True)
+    return data_simulation
+
+
+'''
+Procesar datos para entrenamiento
+'''
+def data_process (data):
+    data_OHE = one_hot_encoding(data)
     print(" One-Hot-Encoding... ".center(80,"*"), data_OHE.shape, sep="\n")
     data_4_use = data_scaling(data_OHE)
     print(" Escalando data... ".center(80,"*"), data_4_use.shape,data_4_use.head(),sep="\n")
-    save_data_file(data_4_use)
     return data_4_use
 
 '''
 Funcion guardar datos
 '''
-def save_data_file(report_table):
+def save_data_file(report_table,name='preprocessing_data',time_on=False):
     module_path = os.path.dirname(__file__)
     folder_path = os.path.join(module_path, "../Data/Preprocessing")
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
     now = datetime.now().strftime("%Y-%m-%d_%H:%M:%S.%f")
-    filename = os.path.join(folder_path, f"preprocessing_data_{now}.csv")
+    if time_on:
+        filename = os.path.join(folder_path, f"{name}_{now}.csv")
+    else:
+        filename = os.path.join(folder_path, f"{name}_.csv")
     report_table.to_csv(filename, sep=",", index=False)
     print(f'''
     Datos almacenados exitosamente!...
@@ -66,7 +102,7 @@ def load_data():
 '''
 Muestreo aleatorio simple
 '''
-def select_data(dataframe,instances=10000,seed=42):
+def select_data(dataframe,instances=80000,seed=42):
     dataframe = dataframe.sample(n=instances, random_state=seed)
     return dataframe
 
@@ -104,7 +140,7 @@ def categorize_status(dataframe,flag=21):
 '''
 Se seleccionan los datos que se encuentren dentro de 
 '''
-def data_filter(dataframe,flag=21):
+def data_filter(dataframe,flag):
     dataframe = dataframe[dataframe["lead_time"]<=flag]
     return dataframe
 
