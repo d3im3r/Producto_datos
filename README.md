@@ -1,12 +1,43 @@
-![](https://upload.wikimedia.org/wikipedia/commons/5/53/UNAL_Aplicaci%C3%B3n_Medell%C3%ADn.svg)
+![](https://medellin.unal.edu.co/templates/unal/images/escudoUnal_black.png)
+# **Producto de Datos**
+## **_Entrega #1_**
 
-# **Productos De Datos**
-## **Entrega 1**
+## Uso:
 
-### **Para ejecutar la simulación a determinados días por favor codifique lo siguiente:**
+1. **Clone el repositorio a su carpeta de trabajo**
+1. **Estando en la carpeta de trabajo abra un terminal de comandos o shell**
+1. **Simulación:**
+* Para ejecutar la simulación con días predeterminados (21 días) ejecute el siguiente código:
 
-* `make -C ./Flujo simulation n_days=21`
+```sh
+make -C ./Flujo simulation
+```
+* Para ejecutar la simulación especificando los días a procesar ejecute el siguiente código:
 
-### **Para ejecutar la simulación y procesamiento de los datos a determinados días por favor codifique lo siguiente:**
+```sh
+make -C ./Flujo simulation n_days=##
+```
+> Nota: `##` Se reemplaza por los días a procesar.
 
-* `make -C ./Flujo processing n_days=21`
+3. **Procesamiento**
+* Para ejecutar la simulación de los datos y el procesamiento con días predeterminados (21 días) ejecute el siguiente código:
+```sh
+make -C ./Flujo processing 
+```
+
+* Para ejecutar la simulación de los datos y el procesamiento especificando lso días a procesar ejecute el siguiente código:
+```sh
+make -C ./Flujo processing n_days=##
+```
+> Nota: `##` Se reemplaza por los días a procesar.
+
+
+## License
+
+Free 
+
+**Free Software, Hell Yeah!** 8-)__
+
+[//]: # (Comentarios ocultos)
+
+   [dill]: <https://github.com/joemccann/dillinger>
