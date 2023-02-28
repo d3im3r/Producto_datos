@@ -2,5 +2,11 @@
 /Entrega_1/Flujo/__pycache__
 /Entrega_1/Flujo/.idea
 /venv
+<<<<<<< HEAD
 /Data/Preprocessing
 /venv_linux
+=======
+/Data/Preprocessing/
+/venv_linux
+Flujo/__pycache__/simulator.cpython-38.pyc
+>>>>>>> 7118a0e06ee3fc0e6ff3a1d597018428d9044266
