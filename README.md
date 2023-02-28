@@ -1,8 +1,11 @@
-![](https://medellin.unal.edu.co/templates/unal/images/escudoUnal_black.png)
+<p align="center">
+  <img src="https://medellin.unal.edu.co/templates/unal/images/escudoUnal_black.png">
+</p>
+
 # **Producto de Datos**
 ## **_Entrega #1_**
 
-## Uso:
+## Uso: <br>
 
 1. **Clone el repositorio a su carpeta de trabajo**
 1. **Estando en la carpeta de trabajo abra un terminal de comandos o shell**
@@ -19,25 +22,31 @@ make -C ./Flujo simulation n_days=##
 ```
 > Nota: `##` Se reemplaza por los días a procesar.
 
-3. **Procesamiento**
+4. **Procesamiento**
 * Para ejecutar la simulación de los datos y el procesamiento con días predeterminados (21 días) ejecute el siguiente código:
 ```sh
 make -C ./Flujo processing 
 ```
 
-* Para ejecutar la simulación de los datos y el procesamiento especificando lso días a procesar ejecute el siguiente código:
+* Para ejecutar la simulación de los datos y el procesamiento especificando los días a procesar ejecute el siguiente código:
 ```sh
 make -C ./Flujo processing n_days=##
 ```
 > Nota: `##` Se reemplaza por los días a procesar.
 
+5. **Reinicio**
+* Para reiniciar el entorno de archivos de procesamiento o simulación ejecute el siguiente código:
+```sh
+make -C ./Flujo reset
+```
+> Nota: Elimina el contenido de la ruta: `/Data/Preprocessing`
 
-## License
+## **License**
 
-Free 
-
-**Free Software, Hell Yeah!** 8-)__
+**Free Software, Hell Yeah!**
 
 [//]: # (Comentarios ocultos)
 
-   [dill]: <https://github.com/joemccann/dillinger>
+
+   [dill]: <br>
+
