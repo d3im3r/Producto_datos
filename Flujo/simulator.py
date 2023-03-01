@@ -39,11 +39,11 @@ def main_work(flag=21,saved=True):
     print(" Muestreando data... ".center(80,"*"), data_selected.shape, data_selected.head(), sep="\n")
     data_clean = data_clean_columns(data_selected,categories_unusefull)
     print(" Limpiando data... ".center(80,"*"),data_clean.head(), sep="\n")
-    data_datetime_corrected = datetime_adjust(data_clean)
-    print(" Definiendo variable status... ".center(80,"*"))
-    data_status = define_status(data_datetime_corrected,flag)
-    print(data_status.loc[:, ['reservation_status', "is_canceled"]])
-    data_simulation = data_filter(data_status,flag)
+    data_status = define_status(data_clean,flag)
+    print(data_status.loc[:, ['reservation_status', "is_canceled", "reservation_status_date"]])
+    data_datetime_corrected = datetime_adjust(data_status)
+    print(" Definiendo variable status... ".center(80,"*"))    
+    data_simulation = data_filter(data_datetime_corrected,flag)
     print(data_simulation)
     if saved:
         save_data_file(data_simulation,name='preprocessing_data',time_on=False)
@@ -126,7 +126,11 @@ o no en el tiempo que hay entre la reserva y el dia
 de llegada al hotel
 '''
 def define_status(dataframe,flag=21):
+    status_old = dataframe["reservation_status"]
     dataframe["reservation_status"] = dataframe.apply(lambda row: categorize_status(row,flag), axis=1)
+    dataframe["reservation_status_date"] = np.where(status_old==dataframe["reservation_status"],
+                    dataframe["reservation_status_date"],
+                    datetime.now().strftime("%Y-%m-%d"))
     return dataframe
 
 def categorize_status(dataframe,flag=21):
