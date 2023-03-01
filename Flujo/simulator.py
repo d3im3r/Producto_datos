@@ -31,15 +31,16 @@ def reset_all():
 funcion para cargar datos y alamacenar sin OHE
 '''
 
-def main_work(flag=21,saved=True):
+def main_work(flag="2015-08-01",saved=True):
     data_raw = load_data()
     print(" Dimensionalidad datos originales... ".center(80,"*"))
     print(data_raw.shape)
     data_selected = select_data(data_raw)
-    print(" Muestreando data... ".center(80,"*"), data_selected.shape, data_selected.head(), sep="\n")
-    data_clean = data_clean_columns(data_selected,categories_unusefull)
+    data_date_month = join_date(data_selected,"arrival_date_day_of_month","arrival_date_month","arrival_date_year")
+    print(" Muestreando data... ".center(80,"*"), data_date_month.shape, data_date_month.head(), sep="\n")
+    data_clean = data_clean_columns(data_date_month,categories_unusefull)
     print(" Limpiando data... ".center(80,"*"),data_clean.head(), sep="\n")
-    data_status = define_status(data_clean,flag)
+    data_status = define_status(data_clean)
     print(data_status.loc[:, ['reservation_status', "is_canceled", "reservation_status_date"]])
     data_datetime_corrected = datetime_adjust(data_status)
     print(" Definiendo variable status... ".center(80,"*"))    
@@ -106,7 +107,7 @@ def load_data():
 '''
 Muestreo aleatorio simple
 '''
-def select_data(dataframe,instances=80000,seed=42):
+def select_data(dataframe,instances=119390,seed=42):
     dataframe = dataframe.sample(n=instances, random_state=seed)
     return dataframe
 
@@ -120,37 +121,42 @@ def data_clean_columns(dataframe,heads_to_remove=[]):
             dataframe.drop(head, axis=1, inplace=True)
     return dataframe
 
-'''
-Se cambia el estado de reserva en base a si fue cancelada 
-o no en el tiempo que hay entre la reserva y el dia 
-de llegada al hotel
-'''
-def define_status(dataframe,flag=21):
-    status_old = dataframe["reservation_status"]
-    dataframe["reservation_status"] = dataframe.apply(lambda row: categorize_status(row,flag), axis=1)
-    dataframe["reservation_status_date"] = np.where(status_old==dataframe["reservation_status"],
-                    dataframe["reservation_status_date"],
-                    datetime.now().strftime("%Y-%m-%d"))
+    return {
+            'January': 1,
+            'February': 2,
+            'March': 3,
+            'April': 4,
+            'May': 5,
+            'June': 6,
+            'July': 7,
+            'August': 8,
+            'September': 9, 
+            'October': 10,
+            'November': 11,
+            'December': 12
+    }[shortMonth]
+
+def join_date(dataframe,day_col,months_col,year_col):
+    dataframe[months_col] = dataframe[months_col].apply(monthToNum)
+    dataframe['arrival_date']=pd.to_datetime({'year': dataframe[year_col],
+                            'month': dataframe[months_col],
+                            'day': dataframe[day_col]
+                            })
     return dataframe
 
-def categorize_status(dataframe,flag=21):
-    if dataframe['is_canceled'] == 1:
-        result = "canceled"
-    else:
-        if dataframe['lead_time'] == 0:
-            result = "closed"
-        elif dataframe['lead_time'] > 0 and dataframe['lead_time'] <= flag:
-            result = "in_progress"
-        else:
-            result = "open"
-    return result
 
 '''
 Se seleccionan los datos que se encuentren dentro de 
 '''
 def data_filter(dataframe,flag):
-    dataframe = dataframe[dataframe["lead_time"]<=flag]
+    dataframe = dataframe[dataframe["arrival_date"]<=flag]
+    if dataframe["reservation_status"] == "processed":
+        dataframe["reservation_status"]
+    else:
+        dataframe["reservation_status"] == "processed"
+        dataframe["reservation_status_date"] = flag
     return dataframe
+
 
 '''
 Se convierte la fecha de reservation status a año, mes y dia
