@@ -40,11 +40,9 @@ def main_work(flag="2015-08-01",saved=True):
     print(" Muestreando data... ".center(80,"*"), data_date_month.shape, data_date_month.head(), sep="\n")
     data_clean = data_clean_columns(data_date_month,categories_unusefull)
     print(" Limpiando data... ".center(80,"*"),data_clean.head(), sep="\n")
-    data_status = define_status(data_clean)
-    print(data_status.loc[:, ['reservation_status', "is_canceled", "reservation_status_date"]])
-    data_datetime_corrected = datetime_adjust(data_status)
-    print(" Definiendo variable status... ".center(80,"*"))    
-    data_simulation = data_filter(data_datetime_corrected,flag)
+    print(data_clean.loc[:, ['reservation_status', "is_canceled", "reservation_status_date"]])
+    data_filtered = data_filter(data_clean,flag)
+    data_simulation = datetime_adjust(data_filtered)
     print(data_simulation)
     if saved:
         save_data_file(data_simulation,name='preprocessing_data',time_on=False)
@@ -121,6 +119,7 @@ def data_clean_columns(dataframe,heads_to_remove=[]):
             dataframe.drop(head, axis=1, inplace=True)
     return dataframe
 
+def monthToNum(shortMonth):
     return {
             'January': 1,
             'February': 2,
@@ -150,7 +149,7 @@ Se seleccionan los datos que se encuentren dentro de
 '''
 def data_filter(dataframe,flag):
     dataframe = dataframe[dataframe["arrival_date"]<=flag]
-    if dataframe["reservation_status"] == "processed":
+    if str(dataframe["reservation_status"]) == "processed":
         dataframe["reservation_status"]
     else:
         dataframe["reservation_status"] == "processed"
