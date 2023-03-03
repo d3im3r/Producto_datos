@@ -18,7 +18,7 @@ make -C ./Flujo simulation
 * Para ejecutar la simulación especificando la fecha ejecute el siguiente código:
 
 ```sh
-make -C ./Flujo simulation deadline={fecha:YYYY-MM-DD}
+make -C ./Flujo simulation deadline={YYYY-MM-DD}
 ```
 > Nota: `YYYY-MM-DD` debe estar entre el 1 de julio de 2015 y el 31 de agosto de 2017.
 
@@ -30,7 +30,7 @@ make -C ./Flujo processing
 
 * Para ejecutar la simulación de los datos y el procesamiento especificando  la fecha a procesar ejecute el siguiente código:
 ```sh
-make -C ./Flujo processing deadline={fecha:YYYY-MM-DD}
+make -C ./Flujo processing deadline={YYYY-MM-DD}
 ```
 > Nota: `YYYY-MM-DD` debe estar entre el 1 de julio de 2015 y el 31 de agosto de 2017.
 
