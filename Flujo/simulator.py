@@ -52,7 +52,7 @@ def main_work(flag="2015-08-01",saved=True):
 '''
 funcion de procesamiento con OHE
 ''' 
-def process_work(flag=21):
+def process_work(flag='2015-08-01'):
     data_status=load_data(data_path='../Data/Preprocessing/preprocessing_data_.csv')
     data_clean = data_clean_columns(data_status,['arrival_date','reservation_status_day'])
     data_simulation = data_filter(data_clean,flag)
@@ -150,7 +150,7 @@ def join_date(dataframe,day_col,months_col,year_col):
 Se seleccionan los datos que se encuentren dentro de 
 '''
 def data_filter(dataframe,flag):
-
+    dataframe = dataframe[dataframe["arrival_date"]<=flag]
     dataframe['reservation_status_day'] = np.where(dataframe["reservation_status"] != "processed",flag ,dataframe["reservation_status"])
     dataframe['reservation_status'] = np.where(dataframe["reservation_status"] != "processed", 'processed',dataframe["reservation_status"])
 

@@ -12,7 +12,7 @@ if __name__ == '__main__':
         limit_2 = datetime.strptime("2017-08-31", '%Y-%m-%d')
         deadline = datetime.strptime(deadline, '%Y-%m-%d')
         if deadline >= limit_1 and deadline <= limit_2:
-            simulator.main_work(deadline)
+            simulator.main_work(str(deadline))
         else:
             print("#"*100,"Por favor ingrese una fecha comprendida entre: 2015-07-01 y 2017-08-31.".center(100,"*"),"#"*100,sep="\n")
 
