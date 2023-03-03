@@ -9,9 +9,9 @@ import shutil
 
 
 #####################################################################################################################################
-categories_unusefull = ["agent","company",'days_in_waiting_list', 'arrival_date_year', "arrival_date_month",'assigned_room_type', 'booking_changes',
+categories_unusefull = ["agent","company",'days_in_waiting_list', 'arrival_date_year', "arrival_date_month","arrival_date_day_of_month",'assigned_room_type', 'booking_changes',
                         'country', 'days_in_waiting_list']
-data_path = "hotel_bookings.csv"
+
 flag = 21 # Cantidad de dias con los que se van a analizar
 
 def reset_all():
@@ -40,9 +40,10 @@ def main_work(flag="2015-08-01",saved=True):
     print(" Muestreando data... ".center(80,"*"), data_date_month.shape, data_date_month.head(), sep="\n")
     data_clean = data_clean_columns(data_date_month,categories_unusefull)
     print(" Limpiando data... ".center(80,"*"),data_clean.head(), sep="\n")
-    print(data_clean.loc[:, ['reservation_status', "is_canceled", "reservation_status_date"]])
-    data_filtered = data_filter(data_clean,flag)
-    data_simulation = datetime_adjust(data_filtered)
+
+    data_datetime_corrected = datetime_adjust(data_clean)
+    print(" Definiendo variable status... ".center(80,"*"))    
+    data_simulation = data_filter(data_datetime_corrected,flag)
     print(data_simulation)
     if saved:
         save_data_file(data_simulation,name='preprocessing_data',time_on=False)
@@ -52,8 +53,9 @@ def main_work(flag="2015-08-01",saved=True):
 funcion de procesamiento con OHE
 ''' 
 def process_work(flag=21):
-    data_status=main_work(flag,saved=False)
-    data_simulation = data_filter(data_status,flag)
+    data_status=load_data(data_path='../Data/Preprocessing/preprocessing_data_.csv')
+    data_clean = data_clean_columns(data_status,['arrival_date','reservation_status_day'])
+    data_simulation = data_filter(data_clean,flag)
     print(data_simulation)
     data_normalized=data_process(data_simulation)
     save_data_file(data_normalized,name='processed_data',time_on=True)
@@ -94,7 +96,7 @@ def save_data_file(report_table,name='preprocessing_data',time_on=False):
 Carga de informacion
 Lectura de archivo csv en la ruta data_path
 '''
-def load_data():
+def load_data(data_path="../Data/Original/hotel_bookings.csv"):
     path_ = os.path.dirname(__file__)
     filename = os.path.join(path_, data_path)
     if not os.path.exists(filename):
@@ -148,12 +150,10 @@ def join_date(dataframe,day_col,months_col,year_col):
 Se seleccionan los datos que se encuentren dentro de 
 '''
 def data_filter(dataframe,flag):
-    dataframe = dataframe[dataframe["arrival_date"]<=flag]
-    if str(dataframe["reservation_status"]) == "processed":
-        dataframe["reservation_status"]
-    else:
-        dataframe["reservation_status"] == "processed"
-        dataframe["reservation_status_date"] = flag
+
+    dataframe['reservation_status_day'] = np.where(dataframe["reservation_status"] != "processed",flag ,dataframe["reservation_status"])
+    dataframe['reservation_status'] = np.where(dataframe["reservation_status"] != "processed", 'processed',dataframe["reservation_status"])
+
     return dataframe
 
 
