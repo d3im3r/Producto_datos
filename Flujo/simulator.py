@@ -54,9 +54,9 @@ funcion de procesamiento con OHE
 ''' 
 def process_work(flag='2015-08-01'):
     data_status=load_data(data_path='../Data/Preprocessing/preprocessing_data_.csv')
-    data_clean = data_clean_columns(data_status,['arrival_date','reservation_status_day'])
-    data_simulation = data_filter(data_clean,flag)
+    data_simulation = data_filter(data_status,flag)
     print(data_simulation)
+    data_clean = data_clean_columns(data_simulation,['arrival_date','reservation_status_day'])
     data_normalized=data_process(data_simulation)
     save_data_file(data_normalized,name='processed_data',time_on=True)
     return data_simulation
