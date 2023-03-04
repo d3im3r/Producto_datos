@@ -36,7 +36,7 @@ class Utils:
     
 
     # Reporte de metricas...
-    def report(estimator, mse, mae, r2):
+    def report(estimator, accuracy, recall, roc_score):
         print(estimator, ":", sep="")
         print(f"  Accuracy: {accuracy}")
         print(f"  Recall: {recall}")
