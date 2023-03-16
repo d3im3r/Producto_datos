@@ -58,7 +58,7 @@ def process_work(flag='2015-08-01'):
     print(data_simulation)
     data_clean = data_clean_columns(data_simulation,['arrival_date','reservation_status_day'])
     data_normalized=data_process(data_simulation)
-    save_data_file(data_normalized,name='processed_data',time_on=True)
+    save_data_file(data_normalized,name='processed_data',time_on=False)
     return data_simulation
 
 
