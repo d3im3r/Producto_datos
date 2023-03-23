@@ -18,15 +18,13 @@ class Models:
 
         self.params ={
             "LogisticRegression": {
-                "penalty": ["l1", "l2", "elasticnet", None],
-                "C": [0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2,1.3,1.4,1.5],
-                "solver": ["lbfgs", "liblinear", "newton-cg", "newton-cholesky", "sag", "saga"]
+                "penalty": ['l1', 'l2'],
+                "C": [0.4,1.0,1.5],
+                "solver": ["liblinear"]
             }, "GradientBoostingClassifier": {
                 "loss": ["los_loss","exponential"],
                 "learning_rate": [0.001, 0.01, 0.1, 0.2],
                 "n_estimators": [100, 200, 300, 400],
-                "subsample": [0.0,0.5,1.0],
-                "criterion": ["friedman_mse"],
                 "max_depth": [3, 5, 8, 10]
             }
         }

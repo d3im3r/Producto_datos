@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    {{ super() }}
+    Bienvenido
+{% endblock %}
+
+{% block content %}
+
+<h1><center>
+    Modelo Predictivo para cancelación de reservas en el sector hotelero
+</h1></center>
+
+<center>
+<img src="{{url_for('static', filename='images/hotel1.jpg')}}"
+style="max-width: 300px"
+alt="Hotel">
+</center>
+
+<form action="/result" method="POST">
+    <label for="is_repeated_guest">¿Huesped repetido? Si:1 - No:0: </label>
+    <input type="text" id="is_repeated_guest" name="is_repeated_guest">
+    <br>
+    <label for="previous_cancellations">Numero de reservas anteriores que fueron canceladas por el cliente: </label>
+    <input type="text" id="previous_cancellations" name="previous_cancellations">
+    <br>
+    <label for="adr">Tarifa promedio diaria (en dolares): </label>
+    <input type="text" id="adr" name="adr">
+    <br>
+    <label for="required_car_parking_spaces">Número de plazas de aparcamiento requeridas: </label>
+    <input type="text" id="required_car_parking_spaces" name="required_car_parking_spaces">
+    <br>
+    <label for="total_of_special_requests">Número de solicitudes especiales requeridas por el cliente: </label>
+    <input type="text" id="total_of_special_requests" name="total_of_special_requests">
+    <br>
+    <br>
+    <input type="submit" value="Predecir">
+  </form>
+{% endblock %}
+

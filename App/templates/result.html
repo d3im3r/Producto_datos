@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    {{ super() }}
+    Bienvenido
+{% endblock %}
+
+
+
+{% block content %}
+        <h1>Resultado de la predicción:</h1>
+        <h2> {{ prediction }}</h2>
+        <h3> La probabilidad de cancelación del cliente es del {{canceled_percent}}%</h3>
+{% endblock %}

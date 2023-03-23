@@ -4,3 +4,4 @@ Flujo/__pycache__
 Flujo/.idea
 /test
 Flujo/__pycache__/simulator.*
+/App/api.py
