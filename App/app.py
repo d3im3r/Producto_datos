@@ -8,6 +8,12 @@ import flask
 import plotly
 import plotly.express as px
 import json
+import os
+
+
+module_path = os.path.dirname(__file__)
+folder_path = os.path.join(module_path, "models/gbt_model.pkl")
+#folder_path = os.path.join(module_path, "../Data/Preprocessing")
 
 app = Flask(__name__)
 # Implementando Bootstrap...
@@ -30,7 +36,8 @@ def index():
 
 def ValuePredictor(to_predict_list):
     to_predict = np.array(to_predict_list).reshape(1, 5)
-    loaded_model = joblib.load("./models/gbt_model.pkl")
+    #/home/d3im3r/Dropbox/Maestría/Productos_Datos/Producto_datos/App/models/gbt_model.pkl
+    loaded_model = joblib.load(folder_path)
     result = loaded_model.predict_proba(to_predict)
     return result[:,1]
 
