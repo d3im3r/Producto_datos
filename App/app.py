@@ -25,7 +25,7 @@ def not_found(error):
     return render_template('404.html', error=error)
 
 # Definiendo ruta para correr...
-@app.route('/inicio')
+@app.route('/')
 def index():
     # user_ip = request.cookies.get('user_ip')
     # context = {
