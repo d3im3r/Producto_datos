@@ -17,10 +17,3 @@ if __name__ == "__main__":
     models.grid_training(X_train,y_train)
 
     print(data)
-
-
-
-# Obtener requeriments.txt:
-# pip freeze > requirements.txt
-
-# Para acceder al servidor en el browser: http://127.0.0.1:8080/predict
