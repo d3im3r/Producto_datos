@@ -8,10 +8,12 @@ Bienvenido
 {% block content %}
     <h1>Evaluation metrics</h1>
     <h2>Accuracy: {{ accuracy }}%</h2>
-    <center>
-        <img src="{{url_for('static', filename='images/Matriz_confusion.jpg')}}"
-        alt="Hotel">
-    </center>
+    <ul>
+      <center>
+        <img src="{{url_for('static', filename='images/confusion.png')}}" style="max-width: 300px" alt="Hotel">
+        <img src="{{url_for('static', filename='images/roc.png')}}" style="max-width: 300px" alt="Hotel">
+      </center>
+    </ul>
 
     <h1>Clasification report</h1>
     <table class="table table-dark">
