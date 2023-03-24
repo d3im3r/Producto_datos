@@ -16,7 +16,10 @@
 </a>
 
 <h1><center>
-    Modelo para predecir cancelaciones anticipadas de reservas
+
+    <div class="p-3 mb-2 bg-dark text-white">
+        Modelo para predecir cancelaciones anticipadas de reservas
+    </div>
 
 </h1></center>
 
@@ -26,18 +29,14 @@
 
 
 
-<center>
-<img src="{{url_for('static', filename='images/hotel1.jpg')}}"
-    style="max-width: 500px"
-    alt="Hotel">
-</center>
-
-
 
 
 <form action="/result" method="POST"><center>
-    <label for="is_repeated_guest">¿Huesped repetido? Si:1 - No:0: </label>
-    <input type="text" id="is_repeated_guest" name="is_repeated_guest" class="boton1">
+    <label for="is_repeated_guest">¿Huesped repetido?: </label>
+    <select id="is_repeated_guest" name="is_repeated_guest" class="boton1">
+    <option value=1>SI</option>
+    <option value=0>NO</option>
+    </select>
     <br>
     <label for="previous_cancellations">Número de reservas anteriores que fueron canceladas por el cliente: </label>
     <input type="text" id="previous_cancellations" name="previous_cancellations" class="boton1">
@@ -52,7 +51,7 @@
     <input type="text" id="total_of_special_requests" name="total_of_special_requests" class="boton1">
     <br>
     <br>
-    <input type="submit" value="Predecir" class="boton">
+    <button type="submit" class="btn btn-primary btn-lg">Predecir</button>
   </form><center>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
 {% endblock %}
