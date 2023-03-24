@@ -39,7 +39,7 @@ if __name__ == "__main__":
        'customer_type_Transient', 'customer_type_Transient-Party',
        'reservation_status_processed'], ["is_canceled"])
     # Particion datos entrenamiento y validacion...
-    print('Iniciando entrenameinto del modelo....')
+    print('*'*200,'Iniciando entrenamiento del modelo....'sep='\n')
     X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.20,random_state=42)
     classification_report, accuracy = models.grid_training(X_train,y_train,X_test,y_test)
     dictionary = {
@@ -53,7 +53,7 @@ if __name__ == "__main__":
     jsonFile.write(classification_report_json)
     jsonFile.close()
 
-    print('Entrenamiento del modelo finalizado....')
+    print('*'*200,'Entrenamiento del modelo finalizado....'sep='\n')
     print(classification_report)
     print('*'*100)
     print(data)

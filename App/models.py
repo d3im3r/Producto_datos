@@ -38,7 +38,7 @@ class Models:
 
         for name, reg in self.reg.items():
 
-            grid_reg = RandomizedSearchCV(reg,self.params[name],cv=3).fit(x_train,y_train.values.ravel())
+            grid_reg = GridSearchCV(reg,self.params[name],cv=3).fit(x_train,y_train.values.ravel())
             score = np.abs(grid_reg.best_score_)
 
             if score < best_score:
