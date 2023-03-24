@@ -5,26 +5,35 @@ body {
 
 
 body {
-  height: 400px;
-  background-image: url("https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2022/10/new-Pixel-Community-Lens-wallpapers-f.jpg?resize=800%2C600&quality=50&strip=all&ssl=1");
-  background-size: cover;
-  background-repeat:no-repeat;
-  background-position: center center;
+    height: 400px;
+    background-image: url("https://i.gifer.com/H7Wg.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 h1 {
-    text-indent: -10em;
-    font-size: 2em;
+    text-indent:-5em;
+    font-size: 4em;
+    font-style:normal;
     color: white;
-    margin: 1rem 0;
+    margin: -1rem 0;
+    background-color: rgb(128, 87, 86);
 }
 
 h1 {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: sans-serif;
 
 }
 
-h2,h3 {
+h2 {
+    text-indent: 1em;
+    font-size: 4em;
+    color: white;
+    margin-block: 20rem 0;
+}
+
+h3 {
     text-indent: -10em;
     font-size: 2em;
     color: white;
@@ -32,17 +41,17 @@ h2,h3 {
 }
 
 form {
-    font-size: 1em;
-    color:white;
+    font-size: 2em;
+    color: white;
     margin: 1rem 0;
 }
 
 .boton {
     background-color: rgb(7, 7, 83);
     color: white;
-  }
+}
 
-  .boton1 {
+.boton1 {
     background-color: white;
     color: black;
-  }
+}
