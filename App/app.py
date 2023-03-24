@@ -13,6 +13,7 @@ import os
 
 module_path = os.path.dirname(__file__)
 folder_path = os.path.join(module_path, "models/gbt_model.pkl")
+json_path = os.path.join(module_path, "./static/json/data.json")
 #folder_path = os.path.join(module_path, "../Data/Preprocessing")
 
 app = Flask(__name__)
@@ -71,7 +72,64 @@ def result():
 
 @app.route('/metrics')
 def metrics():
-    return render_template("metrics.html")
+    json_text = open(json_path)
+
+    json_file = json.load(json_text)
+    string = json_file["data"]
+    accuracy = json_file["accuracy"]
+    # string = ""
+    # with open(json_path) as json_bytes:
+    #     string = json_bytes.read().replace('"', '')
+    
+    # To read a JSON File
+    lines = string.split('\n')
+    lines = [line.strip() for line in lines]
+    lines = [line for line in lines if line]
+    _ = lines[0].split()
+    values = [line.split() for line in lines[1:]]
+
+    precision_non_canceled = values[0][1]
+    precision_canceled = values[1][1]
+    precision_macro_avg = values[3][2]
+    precision_weithted_avg = values[4][2]
+    recall_non_canceled = values[0][2]
+    recall_canceled = values[1][2]
+    recall_macro_avg = values[3][3]
+    recall_weighted_avg = values[4][3]
+    f1_score_non_canceled = values[0][3]
+    f1_score_canceled = values[1][3]
+    f1_score_accuracy = values[2][1]
+    f1_score_macro_avg = values[3][4]
+    f1_score_weighted_avg = values[4][4]
+    support_non_canceled = values[0][4]
+    support_canceled = values[1][4]
+    support_accuracy = values[2][2]
+    support_macro_avg = values[3][5]
+    support_weighted_avg = values[4][5]
+    
+
+    context = {
+        'precision_non_canceled': precision_non_canceled,
+        'precision_canceled': precision_canceled,
+        'precision_macro_avg': precision_macro_avg,
+        'precision_weithted_avg': precision_weithted_avg,
+        'recall_non_canceled': recall_non_canceled,
+        'recall_canceled': recall_canceled,
+        'recall_macro_avg': recall_macro_avg,
+        'recall_weighted_avg': recall_weighted_avg,
+        'f1_score_non_canceled': f1_score_non_canceled,
+        'f1_score_canceled': f1_score_canceled,
+        'f1_score_accuracy': f1_score_accuracy,
+        'f1_score_macro_avg': f1_score_macro_avg,
+        'f1_score_weighted_avg': f1_score_weighted_avg,
+        'support_non_canceled': support_non_canceled,
+        'support_canceled': support_canceled,
+        'support_accuracy': support_accuracy,
+        'support_macro_avg': support_macro_avg,
+        'support_weighted_avg': support_weighted_avg,
+        'accuracy': round(accuracy*100, 2)
+        }
+    return render_template("metrics.html", **context)
 
 
 

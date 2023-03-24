@@ -3,6 +3,7 @@ from utils import Utils
 from models import Models
 from sklearn.model_selection import train_test_split
 import os
+import json
 
 if __name__ == "__main__":
     
@@ -11,6 +12,7 @@ if __name__ == "__main__":
 
     module_path = os.path.dirname(__file__)
     folder_path = os.path.join(module_path, "../Data/Preprocessing/processed_data_.csv")
+    json_path = os.path.join(module_path, "./static/json/data.json")
     
     data = utils.load_data(folder_path)
     data = data.dropna()
@@ -39,7 +41,19 @@ if __name__ == "__main__":
     # Particion datos entrenamiento y validacion...
     print('Iniciando entrenameinto del modelo....')
     X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.20,random_state=42)
-    models.grid_training(X_train,y_train)
+    classification_report, accuracy = models.grid_training(X_train,y_train,X_test,y_test)
+    dictionary = {
+        "data": classification_report,
+        "accuracy": accuracy
+    }
+    classification_report_json = json.dumps(dictionary, indent=4)
+    
+
+    jsonFile = open(json_path, "w")
+    jsonFile.write(classification_report_json)
+    jsonFile.close()
+
     print('Entrenamiento del modelo finalizado....')
+    print(classification_report)
     print('*'*100)
     print(data)
