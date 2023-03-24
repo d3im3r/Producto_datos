@@ -3,7 +3,7 @@ import numpy as np
 
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import GradientBoostingClassifier
-from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
 
 from utils import Utils
 
@@ -37,7 +37,7 @@ class Models:
 
         for name, reg in self.reg.items():
 
-            grid_reg = GridSearchCV(reg,self.params[name],cv=3).fit(X,y.values.ravel())
+            grid_reg = RandomizedSearchCV(reg,self.params[name],cv=3).fit(X,y.values.ravel())
             score = np.abs(grid_reg.best_score_)
 
             if score < best_score:

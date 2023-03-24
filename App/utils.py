@@ -3,6 +3,10 @@ import os
 import joblib
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, recall_score, f1_score, roc_auc_score, ConfusionMatrixDisplay, classification_report
+import os
+
+module_path = os.path.dirname(__file__)
+folder_path = os.path.join(module_path, "models/gbt_model.pkl")
 
 class Utils:
     # Funcion para carga de datos...
@@ -48,6 +52,6 @@ class Utils:
 
     def model_export(self,clf,score):
         print(score)
-        joblib.dump(clf,"./models/best_model.pkl")
+        joblib.dump(clf,folder_path)
 
     # Coment...

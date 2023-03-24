@@ -1,0 +1,6 @@
+1. (Deimer) Modificar el Makefile llevarlo a la raiz y de allí ejecutar lo que se tiene luego:
+    *App/main.py    -> Entrena
+    *App/app.py     -> Lanza la app en internet
+2. (Diego M) Embellecer inicio  (watermark)
+3. (Santi) App/main.py Se debe modificar que se guarden los accuracy y generar la matriz de confusion
+4. (Diego Felipe) Embellece 404 "Dino"
