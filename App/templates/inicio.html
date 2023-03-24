@@ -7,34 +7,52 @@
 
 {% block content %}
 
+
+<a class="navbar-brand" href="{{url_for('index')}}" >
+    <img src="{{url_for('static', filename='images/4d logo.png')}}"
+    style="max-width: 300px"
+    alt="Hotel">
+
+</a>
+
 <h1><center>
-    Modelo Predictivo para cancelación de reservas en el sector hotelero
+    Modelo para predecir cancelaciones anticipadas de reservas
+
 </h1></center>
+
+<h2><center>
+    HOTEL 4D
+</h2></center>
+
+
 
 <center>
 <img src="{{url_for('static', filename='images/hotel1.jpg')}}"
-style="max-width: 300px"
-alt="Hotel">
+    style="max-width: 500px"
+    alt="Hotel">
 </center>
 
-<form action="/result" method="POST">
+
+
+
+<form action="/result" method="POST"><center>
     <label for="is_repeated_guest">¿Huesped repetido? Si:1 - No:0: </label>
-    <input type="text" id="is_repeated_guest" name="is_repeated_guest">
+    <input type="text" id="is_repeated_guest" name="is_repeated_guest" class="boton1">
     <br>
-    <label for="previous_cancellations">Numero de reservas anteriores que fueron canceladas por el cliente: </label>
-    <input type="text" id="previous_cancellations" name="previous_cancellations">
+    <label for="previous_cancellations">Número de reservas anteriores que fueron canceladas por el cliente: </label>
+    <input type="text" id="previous_cancellations" name="previous_cancellations" class="boton1">
     <br>
-    <label for="adr">Tarifa promedio diaria (en dolares): </label>
-    <input type="text" id="adr" name="adr">
+    <label for="adr">Tarifa promedio diaria (en dólares): </label>
+    <input type="text" id="adr" name="adr" class="boton1">
     <br>
     <label for="required_car_parking_spaces">Número de plazas de aparcamiento requeridas: </label>
-    <input type="text" id="required_car_parking_spaces" name="required_car_parking_spaces">
+    <input type="text" id="required_car_parking_spaces" name="required_car_parking_spaces" class="boton1">
     <br>
     <label for="total_of_special_requests">Número de solicitudes especiales requeridas por el cliente: </label>
-    <input type="text" id="total_of_special_requests" name="total_of_special_requests">
+    <input type="text" id="total_of_special_requests" name="total_of_special_requests" class="boton1">
     <br>
     <br>
-    <input type="submit" value="Predecir">
-  </form>
+    <input type="submit" value="Predecir" class="boton">
+  </form><center>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
 {% endblock %}
-

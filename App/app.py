@@ -53,7 +53,7 @@ def result():
             to_predict_list = list(map(float, to_predict_list))
             result = ValuePredictor(to_predict_list)
             canceled_percent = float(result[0])*100
-            canceled_percent = round(canceled_percent,5)
+            canceled_percent = round(canceled_percent,2)
             if float(result)>=0.5:
                 prediction= 'El cliente muy probablemente CANCELARÁ'
             elif float(result)<0.5:
