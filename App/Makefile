@@ -1,5 +1,5 @@
-train:
-    python3 main.py
+trainning:
+	python3 main.py;
 
-app:
-    python3 app.py
+app_simulation:
+	python3 app.py;
