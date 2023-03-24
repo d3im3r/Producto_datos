@@ -8,7 +8,14 @@
 
 
 {% block content %}
-        <h1>Resultado de la predicción:</h1>
-        <h2> {{ prediction }}</h2>
-        <h3> La probabilidad de cancelación del cliente es del {{canceled_percent}}%</h3>
+        <h1><center>Resultado de la predicción:</h1></center>
+        <h2><center> {{ prediction }}</h2></center>
+        <h3><center> La probabilidad de cancelación del cliente es del {{canceled_percent}}%</h3></center>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+        <a class="navbar-brand" href="{{url_for('index')}}" >
+            <img src="{{url_for('static', filename='images/4d logo.png')}}"
+            style="max-width: 150px"
+            alt="Hotel">
+
+        </a>
 {% endblock %}
