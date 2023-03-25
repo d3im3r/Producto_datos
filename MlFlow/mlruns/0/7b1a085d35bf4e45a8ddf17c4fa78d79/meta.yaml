@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/jdbul/OneDrive/Escritorio/Especializacion-Analitica/Asignaturas/ProductosDatos/DataProducts/Producto_datos/MlFlow/mlruns/0/7b1a085d35bf4e45a8ddf17c4fa78d79/artifacts
+end_time: 1679779273792
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 7b1a085d35bf4e45a8ddf17c4fa78d79
+run_name: clean-wren-127
+run_uuid: 7b1a085d35bf4e45a8ddf17c4fa78d79
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1679779273757
+status: 4
+tags: []
+user_id: jdbul

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/jdbul/OneDrive/Escritorio/Especializacion-Analitica/Asignaturas/ProductosDatos/DataProducts/Producto_datos/MlFlow/mlruns/0/2cb50198704e42e6991fe0648dffbd07/artifacts
+end_time: 1679779769942
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 2cb50198704e42e6991fe0648dffbd07
+run_name: crawling-elk-83
+run_uuid: 2cb50198704e42e6991fe0648dffbd07
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1679779764029
+status: 4
+tags: []
+user_id: jdbul

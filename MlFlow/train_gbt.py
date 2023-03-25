@@ -8,6 +8,7 @@ from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.model_selection import RandomizedSearchCV, train_test_split
 from sklearn.metrics import  classification_report, accuracy_score, roc_auc_score
 import os
+import sys
 from utils import Utils
 utils = Utils()
 
@@ -15,10 +16,10 @@ def run():
     #
     # Entrena un modelo sklearn Gradient Boosting Trees...
     #
-
-    import sys
     # Cargando datos...
-    data=utils.load_data(path='processed_data_.csv')
+
+    # Cargando datos...
+    data=utils.load_data("./processed_data_.csv")
     data = data.dropna()
 
     # Partiendo variable dependientes e independientes...
@@ -48,9 +49,9 @@ def run():
     X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.20,random_state=42)
 
     # Definiendo hiperparámetros...
-    learningrate = float(sys.argv[1])
-    nestimators = float(sys.argv[2])
-    maxdepht = int(sys.argv[3])
+    learning_rate = float(sys.argv[1])
+    n_estimators = int(sys.argv[2])
+    max_depht = int(sys.argv[3])
     verbose = int(sys.argv[4])
 
 
@@ -58,15 +59,15 @@ def run():
 
     with mlflow.start_run():
 
-        estimator = GradientBoostingClassifier(learning_rate=learningrate, n_estimators=nestimators, max_depth=maxdepht)
+        estimator = GradientBoostingClassifier(learning_rate=learning_rate, n_estimators=n_estimators, max_depth=max_depht)
         estimator.fit(X_train, y_train)
         accuracy, recall, roc_score = utils.eval_metrics(y_test, y_pred=estimator.predict(X_test))
         if verbose > 0:
             utils.report(estimator, accuracy, recall, roc_score)
 
-            mlflow.log_param("Learning_Rate", learningrate)
-            mlflow.log_param("n_estimators", nestimators)
-            mlflow.log_param("Max_Depth", maxdepht)
+            mlflow.log_param("Learning_Rate", learning_rate)
+            mlflow.log_param("n_estimators", n_estimators)
+            mlflow.log_param("Max_Depth", max_depht)
 
             mlflow.log_metric("Accuracy", accuracy)
             mlflow.log_metric("Recall", recall)

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/jdbul/OneDrive/Escritorio/Especializacion-Analitica/Asignaturas/ProductosDatos/DataProducts/Producto_datos/MlFlow/mlruns/0/c20a5acc9a7d4d8e8ef7aaf49afdd24c/artifacts
+end_time: 1679781784461
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c20a5acc9a7d4d8e8ef7aaf49afdd24c
+run_name: vaunted-roo-539
+run_uuid: c20a5acc9a7d4d8e8ef7aaf49afdd24c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1679781777863
+status: 4
+tags: []
+user_id: jdbul

@@ -23,7 +23,7 @@ class Utils:
     
 
     # Particion de datos en entrenamiento y validacion...
-    def make_train_test_split(x, y, testSize = 0.20, randomState=42):
+    def make_train_test_split(self, x, y, testSize = 0.20, randomState=42):
         (x_train, x_test, y_train, y_test) = train_test_split(
             x,
             y,
@@ -33,7 +33,7 @@ class Utils:
 
     
     # Metricas de evaluacion del modelo...
-    def eval_metrics(y_true, y_pred):
+    def eval_metrics(self, y_true, y_pred):
         accuracy = accuracy_score(y_true, y_pred)
         recall = recall_score(y_true, y_pred)
         roc_score = roc_auc_score(y_true, y_pred)
@@ -42,7 +42,7 @@ class Utils:
     
 
     # Reporte de metricas...
-    def report(estimator, accuracy, recall, roc_score):
+    def report(self, estimator, accuracy, recall, roc_score):
         print(estimator, ":", sep="")
         print(f"  Accuracy: {accuracy}")
         print(f"  Recall: {recall}")
