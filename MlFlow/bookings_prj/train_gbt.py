@@ -19,7 +19,9 @@ def run():
     # Cargando datos...
 
     # Cargando datos...
-    data=utils.load_data("./processed_data_.csv")
+    path = os.path.dirname(file)
+    filename = os.path.join(path, 'processed_data_.csv')
+    data=utils.load_data(path=filename)
     data = data.dropna()
 
     # Partiendo variable dependientes e independientes...
