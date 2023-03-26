@@ -9,6 +9,8 @@ from sklearn.model_selection import RandomizedSearchCV, train_test_split
 from sklearn.metrics import  classification_report, accuracy_score, roc_auc_score
 import os
 import sys
+import warnings
+warnings.filterwarnings("ignore")
 from utils import Utils
 utils = Utils()
 
@@ -67,15 +69,22 @@ def run():
         if verbose > 0:
             utils.report(estimator, accuracy, recall, roc_score)
 
-            mlflow.log_param("Learning_Rate", learning_rate)
+            mlflow.log_param("learning_rate", learning_rate)
             mlflow.log_param("n_estimators", n_estimators)
-            mlflow.log_param("Max_Depth", max_depht)
+            mlflow.log_param("max_depth", max_depht)
 
-            mlflow.log_metric("Accuracy", accuracy)
-            mlflow.log_metric("Recall", recall)
-            mlflow.log_metric("Roc_Score", roc_score)
+            mlflow.log_metric("accuracy", accuracy)
+            mlflow.log_metric("recall", recall)
+            mlflow.log_metric("roc_score", roc_score)
 
             mlflow.sklearn.log_model(estimator, "model")
+
+            # client = mlflow.MlflowClient()
+            # client.create_model_version(
+            #     name=f"sklearn-{learning_rate}-learning_rate-{n_estimators}-n_estimators-{max_depht}-max_depht",
+            #     source=f"mlruns/0/{mlflow.start_run().info.run_id}/artifacts/model"
+            #     run_id=mlflow.start_run().info.run_id,
+            # )
 
 
 if __name__ == "__main__":

@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/jdbul/OneDrive/Escritorio/Especializacion-Analitica/Asignaturas/ProductosDatos/DataProducts/Producto_datos/MlFlow/mlruns/0/fcca4fa392274f4d89fdfe9949de8bfb/artifacts
+end_time: 1679790724772
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: fcca4fa392274f4d89fdfe9949de8bfb
+run_name: selective-mouse-568
+run_uuid: fcca4fa392274f4d89fdfe9949de8bfb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1679790696343
+status: 3
+tags: []
+user_id: jdbul

@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/jdbul/OneDrive/Escritorio/Especializacion-Analitica/Asignaturas/ProductosDatos/DataProducts/Producto_datos/MlFlow/mlruns/0/6be394363c954bb69550a7b9c8471dac/artifacts
+end_time: 1679790787171
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6be394363c954bb69550a7b9c8471dac
+run_name: nimble-doe-320
+run_uuid: 6be394363c954bb69550a7b9c8471dac
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1679790727629
+status: 3
+tags: []
+user_id: jdbul
