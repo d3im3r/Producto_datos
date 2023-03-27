@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ super() }}
+Bienvenido
+{% endblock %}
+
+{% block content %}
+    <h1>Evaluation metrics</h1>
+    <h2>Accuracy: {{ accuracy }}%</h2>
+    <ul>
+      <center>
+        <img src="{{url_for('static', filename='images/confusion.png')}}" style="max-width: 300px" alt="Hotel">
+        <img src="{{url_for('static', filename='images/roc.png')}}" style="max-width: 300px" alt="Hotel">
+      </center>
+    </ul>
+
+    <h1>Clasification report</h1>
+    <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col"> </th>
+            <th scope="col">accuracy</th>
+            <th scope="col">recall</th>
+            <th scope="col">f1-score</th>
+            <th scope="col">support</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Non-Canceled</th>
+            <td>{{ precision_non_canceled }}</td>
+            <td>{{ recall_non_canceled }}</td>
+            <td>{{ f1_score_non_canceled }}</td>
+            <td>{{ support_non_canceled }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Canceled</th>
+            <td>{{ precision_canceled }}</td>
+            <td>{{ recall_canceled }}</td>
+            <td>{{ f1_score_canceled }}</td>
+            <td>{{ support_canceled }}</td>
+          </tr>
+          <tr>
+            <th scope="row">accuracy</th>
+            <td></td>
+            <td></td>
+            <td>{{ f1_score_accuracy }}</td>
+            <td>{{ support_accuracy }}</td>
+          </tr>
+          <tr>
+            <th scope="row">macro avg</th>
+            <td>{{ precision_macro_avg}}</td>
+            <td>{{ recall_macro_avg }}</td>
+            <td>{{ f1_score_macro_avg }}</td>
+            <td>{{ support_macro_avg }}</td>
+          </tr>
+          <tr>
+            <th scope="row">weighted avg</th>
+            <td>{{ precision_weighted_avg}}</td>
+            <td>{{ recall_weighted_avg }}</td>
+            <td>{{ f1_score_weighted_avg }}</td>
+            <td>{{ support_weighted_avg }}</td>
+          </tr>
+        </tbody>
+      </table>
+      
+{% endblock %}

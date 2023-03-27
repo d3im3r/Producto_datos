@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    {{ super() }}
+    Bienvenido
+{% endblock %}
+
+{% block content %}
+
+
+<a class="navbar-brand" href="{{url_for('index')}}" >
+    <img src="{{url_for('static', filename='images/4d logo.png')}}"
+    style="max-width: 300px"
+    alt="Hotel">
+
+</a>
+
+<h1><center>
+
+    <div class="p-3 mb-2 bg-dark text-white">
+        Modelo para predecir cancelaciones anticipadas de reservas
+    </div>
+
+</h1></center>
+
+<h2><center>
+    HOTEL 4D
+</h2></center>
+
+
+
+
+
+<form action="/result" method="POST"><center>
+    <label for="is_repeated_guest">¿Huesped repetido?: </label>
+    <select id="is_repeated_guest" name="is_repeated_guest" class="boton1">
+    <option value=1>SI</option>
+    <option value=0>NO</option>
+    </select>
+    <br>
+    <label for="previous_cancellations">Número de reservas anteriores que fueron canceladas por el cliente: </label>
+    <input type="text" id="previous_cancellations" name="previous_cancellations" class="boton1">
+    <br>
+    <label for="adr">Tarifa promedio diaria (en dólares): </label>
+    <input type="text" id="adr" name="adr" class="boton1">
+    <br>
+    <label for="required_car_parking_spaces">Número de plazas de aparcamiento requeridas: </label>
+    <input type="text" id="required_car_parking_spaces" name="required_car_parking_spaces" class="boton1">
+    <br>
+    <label for="total_of_special_requests">Número de solicitudes especiales requeridas por el cliente: </label>
+    <input type="text" id="total_of_special_requests" name="total_of_special_requests" class="boton1">
+    <br>
+    <br>
+    <button type="submit" class="btn btn-primary btn-lg">Predecir</button>
+  </form><center>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+{% endblock %}

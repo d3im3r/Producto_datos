@@ -1,0 +1,57 @@
+body {
+    font-size: 150%;
+    line-height: 1.5
+}
+
+
+body {
+    height: 400px;
+    background-image: url("https://i.gifer.com/H7Wg.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+h1 {
+    text-indent:-5em;
+    font-size: 4em;
+    font-style:normal;
+    color: white;
+    margin: -1rem 0;
+    background-color: rgb(128, 87, 86);
+}
+
+h1 {
+    font-family: sans-serif;
+
+}
+
+h2 {
+    text-indent: 1em;
+    font-size: 4em;
+    color: white;
+    margin-block: 20rem 0;
+}
+
+h3 {
+    text-indent: -10em;
+    font-size: 2em;
+    color: white;
+    margin: 1rem 0;
+}
+
+form {
+    font-size: 2em;
+    color: white;
+    margin: 1rem 0;
+}
+
+.boton {
+    background-color: rgb(7, 7, 83);
+    color: white;
+}
+
+.boton1 {
+    background-color: white;
+    color: black;
+}

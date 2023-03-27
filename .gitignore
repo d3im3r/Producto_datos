@@ -1,8 +1,7 @@
-/Entrega_1/Flujo/.venv
-/Entrega_1/Flujo/__pycache__
-/Entrega_1/Flujo/.idea
 /venv
-/Data/Preprocessing/
 /venv_linux
-/Flujo/__pycache__/
-/Flujo/.idea/
+Flujo/__pycache__
+Flujo/.idea
+/test
+Flujo/__pycache__/simulator.*
+/App/api.py
