@@ -3,7 +3,7 @@
 </p>
 
 # **Producto de Datos**
-## **_Entrega #1_**
+## **_Entrega #2 y 3_**
 
 ## Uso: <br>
 
