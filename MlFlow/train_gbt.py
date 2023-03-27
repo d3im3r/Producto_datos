@@ -77,7 +77,7 @@ def run():
             mlflow.log_metric("recall", recall)
             mlflow.log_metric("roc_score", roc_score)
 
-            mlflow.sklearn.log_model(estimator, "model")
+            mlflow.sklearn.log_model(sk_model=estimator, artifact_path="model", registered_model_name=f"sklearn-{n_estimators}-GradientBoostingTrees")
 
         # -------------------------------------------------------------------------------
         # evaluación del modelo
@@ -86,13 +86,25 @@ def run():
         eval_data['target'] = y_test
 
         # mlflow.sklearn.log_model(estimator, "model")
-        model_info = mlflow.sklearn.log_model(estimator, "model")
+        model_info = mlflow.sklearn.log_model(sk_model=estimator, artifact_path="model", registered_model_name=f"sklearn-{n_estimators}-GradientBoostingTrees")
         mlflow.evaluate(
             model_info.model_uri,
             eval_data,
             targets="target",
             model_type="classifier" # "regressor" | "classifier"
         )
+
+
+        def predict():
+            
+            model_name = f"sklearn-400-GradientBoostingTrees"
+            stage = 'Staging'
+
+            model = mlflow.pyfunc.load_model(
+                model_uri=f"models:/{model_name}/{stage}"
+            )
+
+            return model.predict(X_test[0:30])
 
 
 if __name__ == "__main__":

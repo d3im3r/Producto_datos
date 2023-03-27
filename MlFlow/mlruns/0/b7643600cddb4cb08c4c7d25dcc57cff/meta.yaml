@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/jdbul/OneDrive/Escritorio/Especializacion-Analitica/Asignaturas/ProductosDatos/DataProducts/Producto_datos/MlFlow/mlruns/0/b7643600cddb4cb08c4c7d25dcc57cff/artifacts
+end_time: 1679891203987
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b7643600cddb4cb08c4c7d25dcc57cff
+run_name: sneaky-trout-301
+run_uuid: b7643600cddb4cb08c4c7d25dcc57cff
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1679891152841
+status: 3
+tags: []
+user_id: jdbul

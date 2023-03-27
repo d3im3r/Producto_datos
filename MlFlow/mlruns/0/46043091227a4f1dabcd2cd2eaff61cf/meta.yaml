@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/jdbul/OneDrive/Escritorio/Especializacion-Analitica/Asignaturas/ProductosDatos/DataProducts/Producto_datos/MlFlow/mlruns/0/46043091227a4f1dabcd2cd2eaff61cf/artifacts
+end_time: 1679891366580
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 46043091227a4f1dabcd2cd2eaff61cf
+run_name: unleashed-bee-244
+run_uuid: 46043091227a4f1dabcd2cd2eaff61cf
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1679891251750
+status: 3
+tags: []
+user_id: jdbul
