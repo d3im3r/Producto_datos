@@ -1,0 +1,12 @@
+creation_timestamp: 1679891185413
+current_stage: None
+description: null
+last_updated_timestamp: 1679891185413
+name: sklearn-300-GradientBoostingTrees
+run_id: b7643600cddb4cb08c4c7d25dcc57cff
+run_link: null
+source: file:///c:/Users/jdbul/OneDrive/Escritorio/Especializacion-Analitica/Asignaturas/ProductosDatos/DataProducts/Producto_datos/MlFlow/mlruns/0/b7643600cddb4cb08c4c7d25dcc57cff/artifacts/model
+status: READY
+status_message: null
+user_id: null
+version: 1

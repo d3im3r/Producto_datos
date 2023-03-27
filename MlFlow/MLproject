@@ -7,4 +7,4 @@ entry_points:
             n_estimators: {type: int, default: 300}
             max_depth: {type: int, default: 5}
             verbose: {type: int, default: 1}
-        command: 'python3 train_gbt.py {learning_rate} {n_estimators} {max_depth} {verbose}'
+        command: 'python train_gbt.py {learning_rate} {n_estimators} {max_depth} {verbose}'
