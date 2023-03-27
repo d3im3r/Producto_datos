@@ -1,0 +1,15 @@
+artifact_uri: file:///home/d3im3r/Dropbox/Maestria/Productos_Datos/Producto_datos/MlFlow/mlruns/0/f83ca40eb95640189b095fd8f779a95e/artifacts
+end_time: 1679877108583
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f83ca40eb95640189b095fd8f779a95e
+run_name: mercurial-mule-794
+run_uuid: f83ca40eb95640189b095fd8f779a95e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1679876931117
+status: 3
+tags: []
+user_id: d3im3r

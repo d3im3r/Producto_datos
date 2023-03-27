@@ -67,15 +67,30 @@ def run():
         if verbose > 0:
             utils.report(estimator, accuracy, recall, roc_score)
 
-            mlflow.log_param("Learning_Rate", learning_rate)
+            mlflow.log_param("learning_rate", learning_rate)
             mlflow.log_param("n_estimators", n_estimators)
-            mlflow.log_param("Max_Depth", max_depht)
+            mlflow.log_param("max_depth", max_depht)
 
-            mlflow.log_metric("Accuracy", accuracy)
-            mlflow.log_metric("Recall", recall)
-            mlflow.log_metric("Roc_Score", roc_score)
+            mlflow.log_metric("accuracy", accuracy)
+            mlflow.log_metric("recall", recall)
+            mlflow.log_metric("roc_score", roc_score)
 
             mlflow.sklearn.log_model(estimator, "model")
+
+        # -------------------------------------------------------------------------------
+        # evaluación del modelo
+        #
+        eval_data = X_test
+        eval_data['target'] = y_test
+
+        # mlflow.sklearn.log_model(estimator, "model")
+        model_info = mlflow.sklearn.log_model(estimator, "model")
+        mlflow.evaluate(
+            model_info.model_uri,
+            eval_data,
+            targets="target",
+            model_type="classifier" # "regressor" | "classifier"
+        )
 
 
 if __name__ == "__main__":
