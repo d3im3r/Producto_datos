@@ -79,7 +79,6 @@ def run():
 
             mlflow.sklearn.log_model(estimator, "model")
 
-<<<<<<< HEAD
         # -------------------------------------------------------------------------------
         # evaluación del modelo
         #
@@ -94,14 +93,6 @@ def run():
             targets="target",
             model_type="classifier" # "regressor" | "classifier"
         )
-=======
-            # client = mlflow.MlflowClient()
-            # client.create_model_version(
-            #     name=f"sklearn-{learning_rate}-learning_rate-{n_estimators}-n_estimators-{max_depht}-max_depht",
-            #     source=f"mlruns/0/{mlflow.start_run().info.run_id}/artifacts/model"
-            #     run_id=mlflow.start_run().info.run_id,
-            # )
->>>>>>> 62a412faa46d94c10a7a6873f05465591c0abae2
 
 
 if __name__ == "__main__":

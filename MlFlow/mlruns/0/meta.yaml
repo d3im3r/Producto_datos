@@ -1,13 +1,6 @@
-<<<<<<< HEAD
 artifact_location: file:///home/d3im3r/Dropbox/Maestria/Productos_Datos/Producto_datos/MlFlow/mlruns/0
-creation_time: 1679876931115
+creation_time: 1679878275761
 experiment_id: '0'
-last_update_time: 1679876931115
-=======
-artifact_location: file:///c:/Users/jdbul/OneDrive/Escritorio/Especializacion-Analitica/Asignaturas/ProductosDatos/DataProducts/Producto_datos/MlFlow/mlruns/0
-creation_time: 1679790696342
-experiment_id: '0'
-last_update_time: 1679790696342
->>>>>>> 62a412faa46d94c10a7a6873f05465591c0abae2
+last_update_time: 1679878275761
 lifecycle_stage: active
 name: Default
